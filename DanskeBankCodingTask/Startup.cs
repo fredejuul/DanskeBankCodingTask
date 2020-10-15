@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DanskeBankCodingTask.Models;
+using DanskeBankCodingTask.Models.DataManager;
+using DanskeBankCodingTask.Models.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +30,7 @@ namespace DanskeBankCodingTask
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MunicipalityTaxContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:MunicipalTaxDB"]));
+            services.AddScoped<IDataRepository<MunicipalityTax>, MunicipalityTaxManager>();
             services.AddControllers();
         }
 
