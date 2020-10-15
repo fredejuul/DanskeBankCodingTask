@@ -9,6 +9,7 @@ namespace DanskeBankCodingTask.Models.Repository
     {
         IEnumerable<TEntity> GetAll();
         TEntity Get(int id);
+        //IEnumerable<TEntity> GetMunicipalAndDate(string municipal, DateTime dateTime);
         void Add(TEntity entity);
         void Update(TEntity dbEntity, TEntity entity);
         void Delete(TEntity entity);

@@ -20,14 +20,14 @@ namespace DanskeBankCodingTask.Controllers
             _dataRepository = dataRepository;
         }
 
-        // GET: api/Employee
+        // GET: api/MunicipalTax
         [HttpGet]
         public IActionResult Get()
         {
             IEnumerable<MunicipalityTax> municipalityTaxes = _dataRepository.GetAll();
             return Ok(municipalityTaxes);
         }
-        // GET: api/Employee/5
+        // GET: api/MunicipalTax/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
@@ -37,6 +37,13 @@ namespace DanskeBankCodingTask.Controllers
                 return NotFound("The tax record couldn't be found.");
             }
             return Ok(municipalityTax);
+        }
+        // GET: api/MunicipalTax/byMunicipality?municipality=Copenhagen&dateTime=2016-02-02
+        [HttpGet("byMunicipality", Name = "GetMunicipality")]
+        public IActionResult Get(string municipality, DateTime dateTime)
+        {
+            IEnumerable<MunicipalityTax> municipalityTaxes = _dataRepository.GetAll();
+            return Ok(municipalityTaxes.Where(e => e.Municipality == municipality && e.StartDate <= dateTime && e.EndDate >= dateTime));
         }
         // POST: api/Employee
         [HttpPost]
@@ -66,7 +73,7 @@ namespace DanskeBankCodingTask.Controllers
                 return NotFound("The Tax record couldn't be found.");
             }
             _dataRepository.Update(municipalityTaxToUpdate, municipalityTax);
-            return NoContent();
+            return Ok(municipalityTax);
         }
         // DELETE: api/Employee/5
         [HttpDelete("{id}")]

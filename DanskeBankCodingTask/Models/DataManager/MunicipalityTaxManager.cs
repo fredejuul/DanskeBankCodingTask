@@ -26,6 +26,11 @@ namespace DanskeBankCodingTask.Models.DataManager
                 .FirstOrDefault(e => e.ID == id);
         }
 
+        //public IEnumerable<MunicipalityTax> GetMunicipalAndDate(string municipal, DateTime dateTime)
+        //{
+        //    return (IEnumerable<MunicipalityTax>)_municipalityTaxContext.MunicipalityTaxes.Select(e => e.Municipality == municipal && e.StartDate >= dateTime && e.EndDate <= dateTime).ToList();
+        //}
+
         public void Add(MunicipalityTax entity)
         {
             _municipalityTaxContext.MunicipalityTaxes.Add(entity);
