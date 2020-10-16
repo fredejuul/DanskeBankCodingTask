@@ -17,7 +17,6 @@ namespace DanskeBankCodingTask.Controllers
     {
         private readonly IDataRepository<MunicipalityTax> _dataRepository;
         ILogger log;
-
         public MunicipalTaxController(IDataRepository<MunicipalityTax> dataRepository)
         {
             _dataRepository = dataRepository;
